@@ -14,9 +14,9 @@ Full-stack exchange management platform with a public website, an Electron deskt
 
 ```text
 Dolat-Exchange/
-├── back-end/      # Express API and database models
-├── desktop-app/  # Electron + React desktop client
-└── site/         # Public React website
+|-- back-end/      # Express API and database models
+|-- desktop-app/  # Electron + React desktop client
+`-- site/         # Public React website
 ```
 
 ## Getting Started
@@ -48,4 +48,3 @@ Environment files are intentionally excluded from source control. Use the includ
 ## Author
 
 Zahra Jafarifard
-
