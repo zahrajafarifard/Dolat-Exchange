@@ -17,7 +17,6 @@ router.get("/getConfig", adminController.getConfig);
 router.post("/uploadImage", fileUpload, adminController.uploadImage);
 router.post("/registerNews", fileUploadNews, adminController.registerNews);
 
-router.post("/updateOther", adminController.updateOther);
-router.post("/updatemsg", adminController.updatemsg);
+
 
 module.exports = router;

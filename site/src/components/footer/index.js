@@ -192,16 +192,15 @@ const Footer = () => {
           <div className="flex flex-row mt-1 screen1000:flex-col ">
             <div>
               بازدید امروز :
-              <span className="font-bold">{todayVisitorsState}</span>
+              <span className="font-bold">{todayVisitorsState ?? 0}</span>
             </div>
             <div className="mx-3 screen1000:mx-0">
               بازدید دیروز :
-              <span className="font-bold">
-                {yesterdayVisitorsState !== null ? yesterdayVisitorsState : 0}
-              </span>
+              <span className="font-bold">{yesterdayVisitorsState ?? 0}</span>
             </div>
             <div>
-              بازدید کل :<span className="font-bold">{totalVisitorsState}</span>
+              بازدید کل :
+              <span className="font-bold">{totalVisitorsState ?? 0}</span>
             </div>
           </div>
         </div>

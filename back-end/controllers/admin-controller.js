@@ -1,15 +1,12 @@
 const Coin = require("../models/COIN/coin");
 const Config = require("../models/config");
 const Gallery = require("../models/gallery");
-const Msg = require("../models/MSG/msg");
 const CurrencyArchive = require("../models/ARCHIVE/currencyArch");
-const OthersArchive = require("../models/ARCHIVE/othersArch");
 const CoinArchive = require("../models/ARCHIVE/coinArch");
 const Currency = require("../models/CURRENCY/currency");
 const CoinPrice = require("../models/COIN/coinPrice");
 const CurrencyPrice = require("../models/CURRENCY/currencyPrice");
-const othersPrice = require("../models/OTHERS/othersPrice");
-const Others = require("../models/OTHERS/others");
+
 const Notification = require("../models/Notifications/notification");
 const News = require("../models/news");
 const fs = require("fs");
@@ -19,10 +16,7 @@ const io = require("../socket");
 exports.registerNews = async (req, res) => {
   const file = req.files[0];
 
-  if (
-    req.headers.secretkey !==
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ0b3B0YWwuY29tIiwiZXhwIjoxNDI2NDIwODAwLCJodHRwOi8vdG9wdGFsLmNvbS9qd3RfY2xhaW1zL2lzX2FkbWluIjp0cnVlLCJjb21wYW55IjoiVG9wdGFsIiwiYXdlc29tZSI6dHJ1ZX0.yRQYnWzskCZUxPwaQupWkiUzKELZ49eM7oWxAQK_ZXw"
-  ) {
+  if (req.headers.secretkey !== process.env.SECRET_KEY) {
     return res.status(500).json({ err: " req is not valid" });
   }
 
@@ -69,7 +63,7 @@ exports.deleteImage = async (req, res) => {
       __dirname,
       "..",
       "images",
-      selecedItem.images.split("\\")[1]
+      selecedItem.images.split("\\")[1],
     );
 
     fs.unlink(filePath, (err) => {
@@ -160,7 +154,7 @@ exports.registerConfig = async (req, res) => {
           where: {
             id: 1,
           },
-        }
+        },
       );
     }
     return res.status(200).json({ msg: "registered successfully ..." });
@@ -185,10 +179,7 @@ exports.getConfig = async (req, res) => {
 };
 
 exports.setNotification = async (req, res) => {
-  if (
-    req.body.secretKey ==
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ0b3B0YWwuY29tIiwiZXhwIjoxNDI2NDIwODAwLCJodHRwOi8vdG9wdGFsLmNvbS9qd3RfY2xhaW1zL2lzX2FkbWluIjp0cnVlLCJjb21wYW55IjoiVG9wdGFsIiwiYXdlc29tZSI6dHJ1ZX0.yRQYnWzskCZUxPwaQupWkiUzKELZ49eM7oWxAQK_ZXw"
-  ) {
+  if (req.body.secretKey == process.env.SECRET_KEY) {
     try {
       const { notification } = req.body;
       await Notification.create({
@@ -235,10 +226,7 @@ const archiveCurrencies = async (currency) => {
 };
 
 exports.updateCurrency = async (req, res) => {
-  if (
-    req.headers.secretkey !==
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ0b3B0YWwuY29tIiwiZXhwIjoxNDI2NDIwODAwLCJodHRwOi8vdG9wdGFsLmNvbS9qd3RfY2xhaW1zL2lzX2FkbWluIjp0cnVlLCJjb21wYW55IjoiVG9wdGFsIiwiYXdlc29tZSI6dHJ1ZX0.yRQYnWzskCZUxPwaQupWkiUzKELZ49eM7oWxAQK_ZXw"
-  ) {
+  if (req.headers.secretkey !== process.env.SECRET_KEY) {
     return res.status(500).json({ err: " req is not valid" });
   }
 
@@ -268,11 +256,11 @@ exports.updateCurrency = async (req, res) => {
         _pSellPrice = findedCurr.sellPrice;
         findedCurr.buyPrice = +String(currentElement.buyPrice).replace(
           /,/g,
-          ""
+          "",
         );
         findedCurr.sellPrice = +String(currentElement.sellPrice).replace(
           /,/g,
-          ""
+          "",
         );
         findedCurr.pBuyPrice = _pBuyPrice;
         findedCurr.pSellPrice = _pSellPrice;
@@ -296,10 +284,7 @@ exports.updateCurrency = async (req, res) => {
 };
 
 exports.updateCoin = async (req, res) => {
-  if (
-    req.headers.secretkey !==
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ0b3B0YWwuY29tIiwiZXhwIjoxNDI2NDIwODAwLCJodHRwOi8vdG9wdGFsLmNvbS9qd3RfY2xhaW1zL2lzX2FkbWluIjp0cnVlLCJjb21wYW55IjoiVG9wdGFsIiwiYXdlc29tZSI6dHJ1ZX0.yRQYnWzskCZUxPwaQupWkiUzKELZ49eM7oWxAQK_ZXw"
-  ) {
+  if (req.headers.secretkey !== process.env.SECRET_KEY) {
     return res.status(500).json({ err: " req is not valid" });
   }
   let findedCoin;
@@ -327,11 +312,11 @@ exports.updateCoin = async (req, res) => {
           _pSellPrice = findedCoin.sellPrice;
           findedCoin.buyPrice = +String(currentElement.buyPrice).replace(
             /,/g,
-            ""
+            "",
           );
           findedCoin.sellPrice = +String(currentElement.sellPrice).replace(
             /,/g,
-            ""
+            "",
           );
           findedCoin.pBuyPrice = _pBuyPrice;
           findedCoin.pSellPrice = _pSellPrice;
@@ -355,86 +340,7 @@ exports.updateCoin = async (req, res) => {
   }
 };
 
-exports.updateOther = async (req, res) => {
-  const body = req.body;
-  if (body.length != 4) {
-    return res.send({ msg: "invalid request" });
-  }
-  if (
-    body &&
-    Object.keys(body).length !== 0 &&
-    body[3].secretKey ==
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ0b3B0YWwuY29tIiwiZXhwIjoxNDI2NDIwODAwLCJodHRwOi8vdG9wdGFsLmNvbS9qd3RfY2xhaW1zL2lzX2FkbWluIjp0cnVlLCJjb21wYW55IjoiVG9wdGFsIiwiYXdlc29tZSI6dHJ1ZX0.yRQYnWzskCZUxPwaQupWkiUzKELZ49eM7oWxAQK_ZXw"
-  ) {
-    await archiveOthers(req, res);
-    body.forEach(async (element) => {
-      if (element.id)
-        await othersPrice.update(
-          {
-            buyPrice: element.buyPrice,
-            sellPrice: element.sellPrice,
-          },
-          {
-            where: {
-              id: element.id,
-            },
-          }
-        );
-    });
 
-    const allCoins = await othersPrice.findAll({
-      raw: true,
-      include: { model: Others },
-      through: {
-        attributes: ["name"],
-      },
-    });
-    // console.log(allCoins);
-    io.getio().emit("getOthers", allCoins);
 
-    return res.send({ msg: "successfuly" });
-  } else {
-    res.send({ mes: "invalid request " });
-  }
-};
 
-exports.updatemsg = async (req, res) => {
-  if (
-    req.body.secretKey ==
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ0b3B0YWwuY29tIiwiZXhwIjoxNDI2NDIwODAwLCJodHRwOi8vdG9wdGFsLmNvbS9qd3RfY2xhaW1zL2lzX2FkbWluIjp0cnVlLCJjb21wYW55IjoiVG9wdGFsIiwiYXdlc29tZSI6dHJ1ZX0.yRQYnWzskCZUxPwaQupWkiUzKELZ49eM7oWxAQK_ZXw"
-  ) {
-    try {
-      console.log("msg", req.body);
 
-      await Msg.update(
-        {
-          msg: req.body.msg,
-        },
-        {
-          where: {
-            id: 1,
-          },
-        }
-      );
-      io.getio().emit("msg", req.body.msg);
-
-      res.send({ msg: "successfuly" });
-    } catch {
-      res.send({ msg: "invalid request" }).status(422);
-    }
-  } else {
-    res.send({ mes: "invalid request " });
-  }
-};
-
-const archiveOthers = (req, res) => {
-  const body = req.body;
-  body.forEach(async (element) => {
-    if (element.id)
-      await OthersArchive.create({
-        buyPrice: element.buyPrice,
-        sellPrice: element.sellPrice,
-        OtherId: element.id,
-      });
-  });
-};

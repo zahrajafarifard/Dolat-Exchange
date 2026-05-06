@@ -55,50 +55,54 @@ const News = () => {
             اخبار و مقالات
           </div>
           <div className="grid grid-cols-2 screen500:grid-cols-1">
-            {news?.map((element) => {
-              return (
-                <div
-                  title="برای دیدن متن کامل خبر کلیک کنید"
-                  onClick={() =>
-                    navigate("/news", {
-                      state: {
-                        news: news,
-                        selectedNews: element,
-                      },
-                    })
-                  }
-                  key={element.id}
-                >
-                  <img
-                    alt="عکس خبر"
-                    src={
-                      `${process.env.REACT_APP_URL}/NewsPhoto/` +
-                      element.image.split("\\")[1]
-                    }
-                    className="w-64 h-40 rounded-xl mx-auto my-2 screen950:w-48 screen950:h-28"
-                  />
-
+            {news?.length === 0 ? (
+              <div>در حال حاضر خبری برای نمایش موجود نیست.</div>
+            ) : (
+              news?.map((element) => {
+                return (
                   <div
-                    className="font-bold text-xl my-2 mr-16 screen1100:mr-8
+                    title="برای دیدن متن کامل خبر کلیک کنید"
+                    onClick={() =>
+                      navigate("/news", {
+                        state: {
+                          news: news,
+                          selectedNews: element,
+                        },
+                      })
+                    }
+                    key={element.id}
+                  >
+                    <img
+                      alt="عکس خبر"
+                      src={
+                        `${process.env.REACT_APP_URL}/NewsPhoto/` +
+                        element.image.split("\\")[1]
+                      }
+                      className="w-64 h-40 rounded-xl mx-auto my-2 screen950:w-48 screen950:h-28"
+                    />
+
+                    <div
+                      className="font-bold text-xl my-2 mr-16 screen1100:mr-8
                   screen1000:text-base
                   screen800:text-sm
                   screen600:text-xs "
-                  >
-                    {element.title}
-                  </div>
-                  <div
-                    className="text-justify w-[80%] mx-auto my-4 px-2 text-lg text-[#4c4c4c]  line-clamp-2
+                    >
+                      {element.title}
+                    </div>
+                    <div
+                      className="text-justify w-[80%] mx-auto my-4 px-2 text-lg text-[#4c4c4c]  line-clamp-2
                 hover:cursor-text hover:whitespace-normal hover:overflow-visible hover:flex hover:flex-1 
                 screen800:line-clamp-3
                 screen1000:text-base
                 screen800:text-sm
                 screen600:text-xs "
-                  >
-                    {element.content}
+                    >
+                      {element.content}
+                    </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })
+            )}
           </div>
         </div>
       </div>

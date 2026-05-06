@@ -35,7 +35,7 @@ const CommonQuestions = () => {
                 listStylePosition: "inside",
               }}
               className={`overflow-hidden 
-               ${!showMore && `line-clamp-5 overflow-visible leading-loose `}`}
+               ${!showMore && `line-clamp-5 overflow-hidden leading-loose `}`}
             >
               <li>
                 <span className="font-bold ml-2">

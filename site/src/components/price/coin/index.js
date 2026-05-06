@@ -30,10 +30,16 @@ const Coin = ({ data, coinUpdatedAt }) => {
 
           <span> به روز رسانی : </span>
 
-          <span>{coinUpdatedAt?.split(" ")[0]}</span>
-          <span className="mx-3 screen400:mx-1">
-            {coinUpdatedAt?.split(" ")[1]}
-          </span>
+          {coinUpdatedAt ? (
+            <>
+              <span>{coinUpdatedAt?.split(" ")[0]}</span>
+              <span className="mx-3 screen400:mx-1">
+                {coinUpdatedAt?.split(" ")[1]}
+              </span>
+            </>
+          ) : (
+            "--:--"
+          )}
         </div>
       </div>
 

@@ -46,10 +46,16 @@ const Currency = ({ data, currUpdatedAt }) => {
 
                 <span> به روز رسانی : </span>
 
-                <span>{currUpdatedAt?.split(" ")[0]}</span>
-                <span className="mx-3 screen500:mx-2 screen400:mx-1">
-                  {currUpdatedAt?.split(" ")[1]}
-                </span>
+                {currUpdatedAt ? (
+                  <>
+                    <span>{currUpdatedAt?.split(" ")[0]}</span>
+                    <span className="mx-3 screen500:mx-2 screen400:mx-1">
+                      {currUpdatedAt?.split(" ")[1]}
+                    </span>
+                  </>
+                ) : (
+                  "--:--"
+                )}
               </div>
             </div>
           </div>
@@ -84,12 +90,20 @@ const Currency = ({ data, currUpdatedAt }) => {
 
                 <span> به روز رسانی : </span>
 
-                <span>{currUpdatedAt?.split(" ")[0]}</span>
-                <span className="mx-3 screen400:mx-1">
-                  {+(Number(currUpdatedAt?.split(" ")[1]?.split(":")[0]) + 1) +
-                    ":" +
-                    currUpdatedAt?.split(" ")[1]?.split(":")[1]}
-                </span>
+                {currUpdatedAt ? (
+                  <>
+                    <span>{currUpdatedAt?.split(" ")[0]}</span>
+                    <span className="mx-3 screen400:mx-1">
+                      {+(
+                        Number(currUpdatedAt?.split(" ")[1]?.split(":")[0]) + 1
+                      ) +
+                        ":" +
+                        currUpdatedAt?.split(" ")[1]?.split(":")[1]}
+                    </span>
+                  </>
+                ) : (
+                  "--:--"
+                )}
               </div>
             </div>
           </div>

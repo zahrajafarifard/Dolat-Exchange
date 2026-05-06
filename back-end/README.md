@@ -39,24 +39,22 @@ By default, the server listens on port `4000`.
 
 ```bash
 npm start  # Start the API with nodemon
-npm test   # Placeholder test script
 ```
 
 ## Environment Variables
 
 See `.env.example`.
 
-| Variable | Description | Default |
-| --- | --- | --- |
-| `PORT` | API server port | `4000` |
-| `VERSION` | Required desktop app version header | `1` |
-| `DB_NAME` | MySQL database name | `dolat-db` |
-| `DB_USER` | MySQL username | `root` |
-| `DB_PASSWORD` | MySQL password | empty |
-| `DB_HOST` | MySQL host | `localhost` |
-| `DB_PORT` | MySQL port | `3306` |
+| Variable      | Description                         | Default     |
+| ------------- | ----------------------------------- | ----------- |
+| `SECRET_KEY`  | SECRET_KEY                          |
+| `VERSION`     | Required desktop app version header | `1`         |
+| `DB_NAME`     | MySQL database name                 | `dolat-db`  |
+| `DB_USER`     | MySQL username                      | `root`      |
+| `DB_PASSWORD` | MySQL password                      | empty       |
+| `DB_HOST`     | MySQL host                          | `localhost` |
+| `DB_PORT`     | MySQL port                          | `3306`      |
 
 ## Author
 
 Zahra Jafarifard
-

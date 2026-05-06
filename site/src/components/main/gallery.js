@@ -113,14 +113,10 @@ const Gallery = () => {
                 "
                 >
                   <img
-                    src={
-                      `${process.env.REACT_APP_URL}/images/` +
-                      img.images.split("\\")[1]
-                    }
+                    src={`${process.env.REACT_APP_URL}/` + img.images}
                     onClick={() =>
                       showImageHandler(
-                        `${process.env.REACT_APP_URL}/images/` +
-                          img.images.split("\\")[1]
+                        `${process.env.REACT_APP_URL}/` + img.images,
                       )
                     }
                     className="w-full h-full"
@@ -154,7 +150,7 @@ const Gallery = () => {
               </div>
             </div>,
 
-            document.getElementById("modals")
+            document.getElementById("modals"),
           )}
       </div>
     </div>

@@ -1,7 +1,7 @@
 const {DataTypes} = require("sequelize")
 const db = require("../../db.js")
 
-const coinPrice=db.define("coinPrice",{
+const coinPrice=db.define("CoinPrice",{
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,

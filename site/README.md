@@ -10,7 +10,6 @@ Public React website for Dolat Exchange. The site presents live currency and coi
 - Redux Toolkit state management with persisted state
 - Socket.IO client integration for realtime updates
 - Tailwind CSS and Sass styling
-- Sitemap generation support
 
 ## Tech Stack
 
@@ -31,26 +30,21 @@ cp .env.example .env
 npm start
 ```
 
-The development server runs through Create React App.
-
 ## Scripts
 
 ```bash
 npm start      # Start the development server
 npm run build  # Create a production build
-npm test       # Run tests in watch mode
-npm run sitemap
 ```
 
 ## Environment Variables
 
 See `.env.example`.
 
-| Variable | Description |
-| --- | --- |
+| Variable        | Description          |
+| --------------- | -------------------- |
 | `REACT_APP_URL` | Backend API base URL |
 
 ## Author
 
 Zahra Jafarifard
-

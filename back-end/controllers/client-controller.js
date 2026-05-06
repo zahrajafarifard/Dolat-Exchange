@@ -1,16 +1,14 @@
 const { Op, Sequelize } = require("sequelize");
 
-const Msg = require("../models/MSG/msg");
 const CurrencyArchive = require("../models/ARCHIVE/currencyArch");
-const OthersArchive = require("../models/ARCHIVE/othersArch");
+
 const CoinArchive = require("../models/ARCHIVE/coinArch");
 const Currency = require("../models/CURRENCY/currency");
 const CoinPrice = require("../models/COIN/coinPrice");
 const Coin = require("../models/COIN/coin");
 const Gallery = require("../models/gallery");
 const CurrencyPrice = require("../models/CURRENCY/currencyPrice");
-const othersPrice = require("../models/OTHERS/othersPrice");
-const Others = require("../models/OTHERS/others");
+
 const Notification = require("../models/Notifications/notification");
 const View = require("../models/USER/view");
 const moment = require("moment");
@@ -50,15 +48,15 @@ exports.getImages = async (req, res) => {
       [Op.and]: [
         Sequelize.where(
           Sequelize.fn("DAY", Sequelize.col("createdAt")),
-          moment().format("DD")
+          moment().format("DD"),
         ),
         Sequelize.where(
           Sequelize.fn("MONTH", Sequelize.col("createdAt")),
-          moment().format("MM")
+          moment().format("MM"),
         ),
         Sequelize.where(
           Sequelize.fn("YEAR", Sequelize.col("createdAt")),
-          moment().format("YYYY")
+          moment().format("YYYY"),
         ),
       ],
     },
@@ -69,15 +67,15 @@ exports.getImages = async (req, res) => {
       [Op.and]: [
         Sequelize.where(
           Sequelize.fn("DAY", Sequelize.col("createdAt")),
-          moment().subtract(1, "days").format("DD")
+          moment().subtract(1, "days").format("DD"),
         ),
         Sequelize.where(
           Sequelize.fn("MONTH", Sequelize.col("createdAt")),
-          moment().subtract(1, "days").format("MM")
+          moment().subtract(1, "days").format("MM"),
         ),
         Sequelize.where(
           Sequelize.fn("YEAR", Sequelize.col("createdAt")),
-          moment().subtract(1, "days").format("YYYY")
+          moment().subtract(1, "days").format("YYYY"),
         ),
       ],
     },
